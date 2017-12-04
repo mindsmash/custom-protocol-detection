@@ -1,0 +1,19 @@
+{
+  "name": "custom-protocol-detection",
+  "description": "Detect whether a custom protocol is available in browser (FF, Chrome, IE8, IE9, IE10, IE11, and Edge)",
+  "main": [
+    "protocolcheck.js"
+  ],
+  "authors": [
+    "Ismail Habib Muhammad (https://github.com/ismailhabib)"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/mindsmash/custom-protocol-detection",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
