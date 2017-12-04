@@ -31,7 +31,7 @@ function openUriWithHiddenFrame(uri, failCb, successCb) {
     var timeout = setTimeout(function () {
         failCb();
         handler.remove();
-    }, 1000);
+    }, 2000);
 
     var iframe = document.querySelector("#hiddenIframe");
     if (!iframe) {
@@ -50,11 +50,11 @@ function openUriWithHiddenFrame(uri, failCb, successCb) {
 }
 
 function openUriWithTimeoutHack(uri, failCb, successCb) {
-    
+
     var timeout = setTimeout(function () {
         failCb();
         handler.remove();
-    }, 1000);
+    }, 2000);
 
     //handle page running in an iframe (blur must be registered with top level window)
     var target = window;
@@ -101,7 +101,7 @@ function openUriUsingIEInOlderWindows(uri, failCb, successCb) {
 }
 
 function openUriUsingIE10InWindows7(uri, failCb, successCb) {
-    var timeout = setTimeout(failCb, 1000);
+    var timeout = setTimeout(failCb, 2000);
     window.addEventListener("blur", function () {
         clearTimeout(timeout);
         successCb();
@@ -127,13 +127,13 @@ function openUriInNewWindowHack(uri, failCb, successCb) {
     setTimeout(function () {
         try {
             myWindow.location.href;
-            myWindow.setTimeout("window.close()", 1000);
+            myWindow.setTimeout("window.close()", 2000);
             successCb();
         } catch (e) {
             myWindow.close();
             failCb();
         }
-    }, 1000);
+    }, 2000);
 }
 
 function openUriWithMsLaunchUri(uri, failCb, successCb) {
