@@ -146,10 +146,11 @@ function openUriWithMsLaunchUri(uri, failCb, successCb) {
 
 function checkBrowser() {
     var isOpera = !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0;
+    var userAgent = navigator.userAgent.toLowerCase();
     return {
         isOpera   : isOpera,
         isFirefox : typeof InstallTrigger !== 'undefined',
-        isSafari  : Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0,
+        isSafari  : (~userAgent.indexOf('safari') && !~userAgent.indexOf('chrome')) || Object.prototype.toString.call(window.HTMLElement).indexOf('Constructor') > 0,
         isChrome  : !!window.chrome && !isOpera,
         isIE      : /*@cc_on!@*/false || !!document.documentMode // At least IE6
     }
@@ -193,6 +194,8 @@ module.exports = function(uri, failCb, successCb) {
             openUriWithTimeoutHack(uri, failCallback, successCallback);
         } else if (browser.isIE) {
             openUriUsingIEInOlderWindows(uri, failCallback, successCallback);
+        } else if (browser.isSafari) {
+            openUriWithHiddenFrame(uri, failCallback, successCallback);
         } else {
             //not supported, implement please
         }
